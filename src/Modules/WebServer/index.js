@@ -9,9 +9,16 @@ module.exports = new ( class WebServer {
    * (Requires the packages and) Instanciate the main components and variables
    */
   constructor() {
-    const express = require('express')
-    this.app = express()
+    this.express = require('express')
+    this.app = this.express()
     this.webPort = process.env.WEB_PORT || 3000
+    var bodyParser = require('body-parser')
+    
+    
+    this.app.use( bodyParser.json() );       // Pour supporter le JSON
+    this.app.use(bodyParser.urlencoded({     // Pour supporter l'URL-Encoded
+      extended: true
+    }));
   }
 
   /**

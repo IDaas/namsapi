@@ -14,7 +14,9 @@
  * Location: ./src/Modules/WebServer
  */
 module.exports.Modules = {
-  'WebServer': require('./src/Modules/WebServer')
+  'Database': require('./src/Modules/Database'),
+  'WebServer': require('./src/Modules/WebServer'),
+  'User': require('./src/Modules/User')
 }
 
 /**
