@@ -34,8 +34,9 @@ module.exports = new class User {
               }
               var errors;
               if (invalids.length != 0) {
-                errors = { errors: invalids };
-                res.status(418).json(errors);
+                errors = { errors: invalids};
+                res.status(200).json(errors);
+                console.log(errors)
                 return
               } 
               else{
@@ -50,7 +51,7 @@ module.exports = new class User {
                       Database.db.query({sql: "SELECT id FROM users where username = ? limit 1",values:[req.body.username]},(error,results,fields)=>{
                         if (error) {
                           errors = { errors: ["Une erreur est survenue ici"] };
-                          res.status(418), res.json(errors);
+                          res.status(200), res.json(errors);
                         }else{
                           res.status(200).json(results[0]);
                         }
