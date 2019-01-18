@@ -40,8 +40,8 @@ module.exports = new class User {
                 return
               } 
               else{
-                Database.db.query({sql: "INSERT into users (username,first_name,last_name,email,mailtoken,validate,password,centre) values(?,?,?,?,?,?,?,?)",
-                      values: [req.body.username,req.body.first_name,req.body.last_name,req.body.email,req.body.mailtoken,req.body.validate,req.body.password,req.body.centre]},
+                Database.db.query({sql: "INSERT into users (username,first_name,last_name,email,mailtoken,password,centre) values(?,?,?,?,?,?,?)",
+                      values: [req.body.username,req.body.first_name,req.body.last_name,req.body.email,req.body.mailtoken,req.body.password,req.body.centre]},
                   (error, results, fields) => {
                     if (error) {
                       errors = { errors: ["Une erreur est survenue"] };
