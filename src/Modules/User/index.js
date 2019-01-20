@@ -85,12 +85,12 @@ module.exports = new class User {
     });
 
     //get an user
-    this.router.get("/:username", (req, res) => {
+    this.router.get("/:id", (req, res) => {
       Database.db.query(
         {
           sql:
-            "SELECT  'id', username,first_name , last_name,email, mailtoken from users WHERE username = ? LIMIT 1",
-          values: [req.params.username]
+            "SELECT  id, username,first_name , last_name,email, mailtoken from users WHERE id = ? LIMIT 1",
+          values: [req.params.id]
         },
         (error, results, fields) => {
           if (error) {
@@ -114,7 +114,7 @@ module.exports = new class User {
         },
         (error, results, fields) => {
           if (error) throw error;
-          res.json(results[0]);
+          res.status(200).json(results[0]);
         }
       );
     });
