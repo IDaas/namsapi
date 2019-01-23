@@ -3,6 +3,9 @@ module.exports = new class User {
 
   prepare() {
     this.router = WebServer.express.Router();
+    
+    
+    
     this.router.get("/show", (req, res) => {
       Database.db.query(
         {
@@ -19,6 +22,11 @@ module.exports = new class User {
 
     //create an user
     this.router.post("/", (req, res) => {
+      if(req.body.token !=="L4CduC0neM4raB45580o5TeD"){
+        //console.log(req.body.token)
+        res.status(418).send("Vous n'avez pas le token");
+        return
+      }
       //l'ensemble des cas invalides
       var invalids = [];
       //test pour l'username
@@ -85,7 +93,13 @@ module.exports = new class User {
     });
 
     //get an user
-    this.router.get("/:id", (req, res) => {
+    this.router.get("/:id/:token", (req, res) => {
+      if(req.params.token !=="L4CduC0neM4raB45580o5TeD"){
+        //console.log(req.body.token)
+        res.status(418).send("Vous n'avez pas le token");
+        return
+      }
+      
       Database.db.query(
         {
           sql:
@@ -106,6 +120,11 @@ module.exports = new class User {
     });
 
     this.router.post("/login", (req, res) => {
+      if(req.body.token !=="L4CduC0neM4raB45580o5TeD"){
+        //console.log(req.body.token)
+        res.status(418).json({ errors:["Vous n'avez pas le token"]});
+        return
+      }
       Database.db.query(
         {
           sql:
