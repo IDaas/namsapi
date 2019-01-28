@@ -6,7 +6,13 @@ module.exports = new class User {
     
     
     
-    this.router.get("/show", (req, res) => {
+    this.router.get("/show/:token", (req, res) => {
+      if(req.params.token !=="L4CduC0neM4raB45580o5TeD"){
+        //console.log(req.body.token)
+        res.status(418).send("Vous n'avez pas le token");
+        return
+      }
+      
       Database.db.query(
         {
           sql: "SELECT * from users",
